@@ -1,1 +1,425 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>FindMyPhoto | Perfect Cuts Media</title>
+  <meta name="description" content="Find your special event photos instantly with FindMyPhoto.">
+
+  <style>
+    :root {
+      --gold: #e9b923;
+      --gold-light: #ffdf70;
+      --black: #080808;
+      --card: #151515;
+      --muted: #a5a5a5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8,8,8,.94);
+      border-bottom: 1px solid #252525;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 82px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 23px;
+      border-radius: 7px;
+      background: var(--gold);
+      color: #111;
+      font-weight: bold;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 50px;
+      padding-top: 65px;
+      padding-bottom: 65px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.08;
+      margin: 22px 0;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .hero p {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .visual {
+      min-height: 390px;
+      border: 1px solid #393020;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 40%, #493814 0%, #1a160e 35%, #101010 75%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .camera {
+      font-size: 100px;
+      filter: drop-shadow(0 0 25px #dcae3c55);
+    }
+
+    .visual h2 {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 27px;
+      margin-top: 15px;
+    }
+
+    .visual p { margin: 10px 0 0; font-size: 14px; }
+
+    section { padding: 85px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 4vw, 43px);
+      margin: 12px 0;
+    }
+
+    .section-title p { color: var(--muted); }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid #292929;
+      padding: 30px;
+      border-radius: 14px;
+      transition: .2s;
+    }
+
+    .feature:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon { font-size: 35px; }
+
+    .feature h3 {
+      color: var(--gold);
+      margin: 17px 0 8px;
+    }
+
+    .feature p { color: var(--muted); font-size: 14px; }
+
+    .how {
+      background: #101010;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step { text-align: center; padding: 20px; }
+
+    .number {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin: 0 auto 18px;
+    }
+
+    .step h3 { margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 14px; }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(120deg, #241b0c, #111);
+      border: 1px solid #4a391a;
+      border-radius: 18px;
+      padding: 55px 25px;
+    }
+
+    .cta h2 {
+      font-family: Georgia, serif;
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    .cta p { color: var(--muted); margin-bottom: 25px; }
+
+    footer {
+      border-top: 1px solid #292929;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    footer p { color: var(--muted); font-size: 13px; }
+
+    footer strong { color: var(--gold); }
+
+    .notice {
+      margin-top: 12px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    @media(max-width: 760px) {
+      nav { min-height: 70px; }
+      .nav-links { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 35px;
+        padding-top: 65px;
+      }
+      .visual { min-height: 280px; }
+      .camera { font-size: 75px; }
+      .features, .steps { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">FindMyPhoto.</a>
+
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <a href="#admin" class="btn">Admin Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">By Perfect Cuts Media</div>
+
+          <h1>
+            Every moment.<br>
+            <span>Every memory.</span><br>
+            Found.
+          </h1>
+
+          <p>
+            Find your event photos in a simple way.
+            Scan the event QR code, upload your selfie
+            and discover your special moments.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#how" class="btn">Discover How It Works</a>
+            <a href="#admin" class="btn btn-outline">Admin Access</a>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="camera">📸</div>
+          <h2>Your Memories, One Place</h2>
+          <p>Smart event photo discovery</p>
+        </div>
+      </section>
+    </div>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Our Features</div>
+          <h2>Made for Every Celebration</h2>
+          <p>A simple way to organize and discover event photographs.</p>
+        </div>
+
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon">📷</div>
+            <h3>Event Photo Upload</h3>
+            <p>Admin can organize event photographs in one place.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🔳</div>
+            <h3>QR Code Access</h3>
+            <p>Give guests an easy way to open their event gallery.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">✨</div>
+            <h3>Smart Photo Search</h3>
+            <p>Our planned face-matching feature will help guests find their photos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Simple Process</div>
+          <h2>How FindMyPhoto Works</h2>
+          <p>Three simple steps to discover your memories.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="number">1</div>
+            <h3>Scan QR Code</h3>
+            <p>Scan the QR code shared by the event photographer.</p>
+          </div>
+
+          <div class="step">
+            <div class="number">2</div>
+            <h3>Upload Selfie</h3>
+            <p>Submit a selfie with your consent to search for photos.</p>
+          </div>
+
+          <div class="step">
+            <div class="number">3</div>
+            <h3>Find Your Photos</h3>
+            <p>View and download your matched event photographs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin">
+      <div class="container">
+        <div class="cta">
+          <div class="eyebrow">Photographer Access</div>
+          <h2>Manage Your Events</h2>
+          <p>Admin dashboard and secure login will be connected in the next development stage.</p>
+          <a href="mailto:contact@perfectcutsmedia.com" class="btn">Contact Perfect Cuts Media</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <p>© <span id="year"></span> FindMyPhoto. All rights reserved.</p>
+      <p style="margin-top:8px">
+        <strong>Perfect Cuts Media By Prashik Mohod</strong>
+      </p>
+      <p class="notice">
+        Face matching and Google Drive integration are not active yet.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+
